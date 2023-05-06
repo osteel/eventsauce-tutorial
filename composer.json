@@ -1,0 +1,58 @@
+{
+    "name": "osteel/eventsauce-tutorial",
+    "description": "Repository for https://tech.osteel.me/posts/building-a-php-cli-tool-using-ddd-and-event-sourcing-getting-started-with-eventsauce",
+    "keywords": ["laravel", "laravel zero", "php", "event sourcing", "eventsauce", "console", "cli"],
+    "homepage": "https://tech.osteel.me/posts/building-a-php-cli-tool-using-ddd-and-event-sourcing-getting-started-with-eventsauce",
+    "type": "project",
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/osteel/eventsauce-tutorial/issues",
+        "source": "https://github.com/osteel/eventsauce-tutorial"
+    },
+    "authors": [
+        {
+            "name": "Yannick Chenot",
+            "email": "yannick@yellowraincoat.co.uk",
+            "homepage": "https://github.com/osteel",
+            "role": "Maintainer"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/database": "^10.0",
+        "laravel-zero/framework": "^10.0.2",
+        "nunomaduro/termwind": "^1.15.1"
+    },
+    "require-dev": {
+        "fakerphp/faker": "^1.9.1",
+        "laravel/pint": "^1.10",
+        "mockery/mockery": "^1.5.1",
+        "pestphp/pest": "^2.5",
+        "phpstan/phpstan": "^1.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Domain\\": "domain/src/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/",
+            "Domain\\Tests\\": "domain/tests/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "bin": ["est"]
+}
