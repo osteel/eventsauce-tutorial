@@ -60,6 +60,7 @@ class NonFungibleAsset implements AggregateRoot
             date: $action->date,
             costBasis: $this->costBasis,
             proceeds: $action->proceeds,
+            capitalGain: $action->proceeds - $this->costBasis
         ));
     }
 

@@ -8,6 +8,7 @@ final readonly class NonFungibleAssetDisposedOf
         public string $date,
         public int $costBasis,
         public int $proceeds,
+        public int $capitalGain,
     ) {
     }
 }

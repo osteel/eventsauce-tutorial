@@ -74,27 +74,31 @@ it('cannot increase the cost basis of a non-fungible asset that has not been acq
         ->expectToFail(NonFungibleAssetException::notAcquired($this->aggregateRootId));
 });
 
-it('can dispose of a non-fungible asset', function () {
+it('can dispose of a non-fungible asset', function (int $costBasis, int $proceeds, int $capitalGain) {
     $nonFungibleAssetAcquired = new NonFungibleAssetAcquired(
         date: '2015-10-21',
-        costBasis: 100,
+        costBasis: $costBasis,
     );
 
     $disposeOfNonFungibleAsset = new DisposeOfNonFungibleAsset(
         date: '2015-10-22',
-        proceeds: 150,
+        proceeds: $proceeds,
     );
 
     $nonFungibleAssetDisposedOf = new NonFungibleAssetDisposedOf(
         date: '2015-10-22',
-        costBasis: 100,
-        proceeds: 150,
+        costBasis: $costBasis,
+        proceeds: $proceeds,
+        capitalGain: $capitalGain,
     );
 
     $this->given($nonFungibleAssetAcquired)
         ->when($disposeOfNonFungibleAsset)
         ->then($nonFungibleAssetDisposedOf);
-});
+})->with([
+    'positive capital gain' => [100, 150, 50],
+    'negative capital gain' => [150, 100, -50],
+]);
 
 it('can dispose of a non-fungible asset that had a cost basis increase', function () {
     $nonFungibleAssetAcquired = new NonFungibleAssetAcquired(
@@ -117,6 +121,7 @@ it('can dispose of a non-fungible asset that had a cost basis increase', functio
         date: '2015-10-23',
         costBasis: 150,
         proceeds: 200,
+        capitalGain: 50,
     );
 
     $this->given($nonFungibleAssetAcquired, $nonFungibleAssetCostBasisIncreased)
