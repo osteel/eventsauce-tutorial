@@ -16,18 +16,15 @@ class NonFungibleAsset implements AggregateRoot
 {
     use AggregateRootBehaviour;
 
-    private ?string $asset = null;
+    private bool $acquired = false;
 
     private int $costBasis = 0;
 
     public function acquire(AcquireNonFungibleAsset $action): void
     {
-        if ($this->asset !== null) {
-            throw NonFungibleAssetException::alreadyAcquired($action->asset);
-        }
+        throw_if($this->acquired, NonFungibleAssetException::alreadyAcquired($this->aggregateRootId));
 
         $this->recordThat(new NonFungibleAssetAcquired(
-            asset: $action->asset,
             date: $action->date,
             costBasis: $action->costBasis,
         ));
@@ -35,22 +32,15 @@ class NonFungibleAsset implements AggregateRoot
 
     public function applyNonFungibleAssetAcquired(NonFungibleAssetAcquired $event): void
     {
-        $this->asset = $event->asset;
+        $this->acquired = true;
         $this->costBasis = $event->costBasis;
     }
 
     public function increaseCostBasis(IncreaseNonFungibleAssetCostBasis $action): void
     {
-        if (is_null($this->asset)) {
-            throw NonFungibleAssetException::notAcquired($action->asset);
-        }
-
-        if ($action->asset !== $this->asset) {
-            throw NonFungibleAssetException::assetMismatch(incoming: $action->asset, current: $this->asset);
-        }
+        throw_unless($this->acquired, NonFungibleAssetException::notAcquired($this->aggregateRootId));
 
         $this->recordThat(new NonFungibleAssetCostBasisIncreased(
-            asset: $action->asset,
             date: $action->date,
             costBasisIncrease: $action->costBasisIncrease,
         ));
@@ -63,16 +53,9 @@ class NonFungibleAsset implements AggregateRoot
 
     public function disposeOf(DisposeOfNonFungibleAsset $action): void
     {
-        if (is_null($this->asset)) {
-            throw NonFungibleAssetException::notAcquired($action->asset);
-        }
-
-        if ($action->asset !== $this->asset) {
-            throw NonFungibleAssetException::assetMismatch(incoming: $action->asset, current: $this->asset);
-        }
+        throw_unless($this->acquired, NonFungibleAssetException::notAcquired($this->aggregateRootId));
 
         $this->recordThat(new NonFungibleAssetDisposedOf(
-            asset: $action->asset,
             date: $action->date,
             costBasis: $this->costBasis,
             proceeds: $action->proceeds,
@@ -81,7 +64,7 @@ class NonFungibleAsset implements AggregateRoot
 
     public function applyNonFungibleAssetDisposedOf(NonFungibleAssetDisposedOf $event): void
     {
-        $this->asset = null;
+        $this->acquired = false;
         $this->costBasis = 0;
     }
 }
