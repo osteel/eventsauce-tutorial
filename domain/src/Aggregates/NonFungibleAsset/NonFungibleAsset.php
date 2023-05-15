@@ -43,12 +43,13 @@ class NonFungibleAsset implements AggregateRoot
         $this->recordThat(new NonFungibleAssetCostBasisIncreased(
             date: $action->date,
             costBasisIncrease: $action->costBasisIncrease,
+            costBasis: $this->costBasis + $action->costBasisIncrease,
         ));
     }
 
     public function applyNonFungibleAssetCostBasisIncreased(NonFungibleAssetCostBasisIncreased $event): void
     {
-        $this->costBasis += $event->costBasisIncrease;
+        $this->costBasis = $event->costBasis;
     }
 
     public function disposeOf(DisposeOfNonFungibleAsset $action): void

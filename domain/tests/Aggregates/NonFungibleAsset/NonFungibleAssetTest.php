@@ -56,6 +56,7 @@ it('can increase the cost basis of a non-fungible asset', function () {
     $nonFungibleAssetCostBasisIncreased = new NonFungibleAssetCostBasisIncreased(
         date: '2015-10-22',
         costBasisIncrease: 50,
+        costBasis: 150,
     );
 
     $this->given($nonFungibleAssetAcquired)
@@ -104,6 +105,7 @@ it('can dispose of a non-fungible asset that had a cost basis increase', functio
     $nonFungibleAssetCostBasisIncreased = new NonFungibleAssetCostBasisIncreased(
         date: '2015-10-22',
         costBasisIncrease: 50,
+        costBasis: 150,
     );
 
     $disposeOfNonFungibleAsset = new DisposeOfNonFungibleAsset(
