@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0ba47f0fd7f1f31a44a896ac08ec3fa1",
+    "content-hash": "3c03e27d34299c5d7a450745d2af3db8",
     "packages": [
         {
             "name": "brick/math",
@@ -4497,17 +4497,59 @@
             "time": "2022-05-02T15:47:09+00:00"
         },
         {
-            "name": "eventsauce/test-utilities",
-            "version": "3.3.0",
+            "name": "eventsauce/pest-utilities",
+            "version": "3.4.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/EventSaucePHP/TestUtilities.git",
-                "reference": "39810ad757207f4e8a25c3cc4bbbc09737c0475d"
+                "url": "https://github.com/EventSaucePHP/PestUtilities.git",
+                "reference": "dd66081c0106248169ee881ad947022ccacc2143"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/EventSaucePHP/TestUtilities/zipball/39810ad757207f4e8a25c3cc4bbbc09737c0475d",
-                "reference": "39810ad757207f4e8a25c3cc4bbbc09737c0475d",
+                "url": "https://api.github.com/repos/EventSaucePHP/PestUtilities/zipball/dd66081c0106248169ee881ad947022ccacc2143",
+                "reference": "dd66081c0106248169ee881ad947022ccacc2143",
+                "shasum": ""
+            },
+            "require": {
+                "eventsauce/eventsauce": "^3.0",
+                "eventsauce/test-utilities": "^3.4",
+                "php": "^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "./functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank de Jonge",
+                    "email": "info@frenky.net"
+                }
+            ],
+            "description": "Test utilities for EventSauce.",
+            "support": {
+                "issues": "https://github.com/EventSaucePHP/PestUtilities/issues",
+                "source": "https://github.com/EventSaucePHP/PestUtilities/tree/3.4.0"
+            },
+            "time": "2023-05-13T20:11:12+00:00"
+        },
+        {
+            "name": "eventsauce/test-utilities",
+            "version": "3.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/EventSaucePHP/TestUtilities.git",
+                "reference": "5c41cb1f873206f92bb98379b6f3e83b6474ae4a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/EventSaucePHP/TestUtilities/zipball/5c41cb1f873206f92bb98379b6f3e83b6474ae4a",
+                "reference": "5c41cb1f873206f92bb98379b6f3e83b6474ae4a",
                 "shasum": ""
             },
             "require": {
@@ -4538,7 +4580,7 @@
             ],
             "description": "Test utilities for EventSauce.",
             "support": {
-                "source": "https://github.com/EventSaucePHP/TestUtilities/tree/3.3.0"
+                "source": "https://github.com/EventSaucePHP/TestUtilities/tree/3.4.0"
             },
             "funding": [
                 {
@@ -4546,7 +4588,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-02-23T10:44:17+00:00"
+            "time": "2023-05-13T20:11:12+00:00"
         },
         {
             "name": "fakerphp/faker",

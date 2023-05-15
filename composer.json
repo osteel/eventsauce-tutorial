@@ -25,7 +25,7 @@
         "nunomaduro/termwind": "^1.15.1"
     },
     "require-dev": {
-        "eventsauce/test-utilities": "^3.3",
+        "eventsauce/pest-utilities": "^3.4",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.10",
         "mockery/mockery": "^1.5.1",
