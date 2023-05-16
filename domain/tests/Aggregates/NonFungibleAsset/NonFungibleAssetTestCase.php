@@ -8,8 +8,6 @@ use Domain\Aggregates\NonFungibleAsset\Actions\IncreaseNonFungibleAssetCostBasis
 use Domain\Aggregates\NonFungibleAsset\NonFungibleAsset;
 use Domain\Aggregates\NonFungibleAsset\ValueObjects\NonFungibleAssetId;
 use EventSauce\EventSourcing\AggregateRootId;
-use EventSauce\EventSourcing\MessageDispatcher;
-use EventSauce\EventSourcing\SynchronousMessageDispatcher;
 use EventSauce\EventSourcing\TestUtilities\AggregateRootTestCase;
 
 abstract class NonFungibleAssetTestCase extends AggregateRootTestCase
@@ -22,11 +20,6 @@ abstract class NonFungibleAssetTestCase extends AggregateRootTestCase
     protected function aggregateRootClassName(): string
     {
         return NonFungibleAsset::class;
-    }
-
-    protected function messageDispatcher(): MessageDispatcher
-    {
-        return new SynchronousMessageDispatcher();
     }
 
     public function handle(object $action)
