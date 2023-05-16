@@ -26,6 +26,10 @@ it('can acquire a non-fungible asset', function () {
         ->then($nonFungibleAssetAcquired);
 });
 
+it('can acquire a non-fungible asset 2')
+    ->when(new AcquireNonFungibleAsset(date: '2015-10-21', costBasis: 100))
+    ->then(new NonFungibleAssetAcquired(date: '2015-10-21', costBasis: 100));
+
 it('cannot acquire the same non-fungible asset more than once', function () {
     $nonFungibleAssetAcquired = new NonFungibleAssetAcquired(
         date: '2015-10-21',
