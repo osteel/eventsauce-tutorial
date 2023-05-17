@@ -22,7 +22,7 @@ class NonFungibleAsset implements AggregateRoot
 
     public function acquire(AcquireNonFungibleAsset $action): void
     {
-        throw_if($this->acquired, NonFungibleAssetException::alreadyAcquired($this->aggregateRootId));
+        throw_if($this->acquired, NonFungibleAssetException::alreadyAcquired($this->aggregateRootId->toString()));
 
         $this->recordThat(new NonFungibleAssetAcquired(
             date: $action->date,
@@ -38,7 +38,7 @@ class NonFungibleAsset implements AggregateRoot
 
     public function increaseCostBasis(IncreaseNonFungibleAssetCostBasis $action): void
     {
-        throw_unless($this->acquired, NonFungibleAssetException::notAcquired($this->aggregateRootId));
+        throw_unless($this->acquired, NonFungibleAssetException::notAcquired($this->aggregateRootId->toString()));
 
         $this->recordThat(new NonFungibleAssetCostBasisIncreased(
             date: $action->date,
@@ -54,7 +54,7 @@ class NonFungibleAsset implements AggregateRoot
 
     public function disposeOf(DisposeOfNonFungibleAsset $action): void
     {
-        throw_unless($this->acquired, NonFungibleAssetException::notAcquired($this->aggregateRootId));
+        throw_unless($this->acquired, NonFungibleAssetException::notAcquired($this->aggregateRootId->toString()));
 
         $this->recordThat(new NonFungibleAssetDisposedOf(
             date: $action->date,
